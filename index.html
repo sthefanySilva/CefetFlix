@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+	<head>
+		<title>CefetFlix</title>
+		<meta charset="utf-8"/>
+		<script src="./js/jquery.min.js">
+		</script>
+		<script src="./js/filmes.js">
+		</script>
+		<link rel="stylesheet" type="text/css" href="./css/estilo.css"/>
+		<script>
+			$(function(){
+				$.each( filmes, function(index, filme){
+					
+					var $semelhante = $("<div/>");
+					$.each(filme.titulosSemelhantes, function(i, semelhanteid){
+						$.each(filmes, function(i, obj){
+							if(semelhanteid==obj.id){
+								$semelhante.append($("<img />")
+												.attr("src", this.figura))
+							}
+						})
+					});
+					
+					var $ulGenero = $("<ul/>");
+					$.each(filme.generos, function(i, obj){
+					console.log(obj);
+						$ulGenero.append($("<li />").text(obj))				 
+					});
+					
+					var $ulopinioes = $("<p/>");
+					$.each(filme.opinioes, function(i, op){
+						$ulopinioes.append($("<p />").text(op.rating+"."+op.descricao))				 
+					});
+					
+					
+					$(".catalogo")
+						$(".filmes")
+						.append($("<div/>")
+							.addClass("titulo")
+							.append($("<h1/>")
+								.text(filme.titulo)
+							)
+							.append($("<img/>")
+								.addClass("figura")
+								.attr("src",filme.figura)
+							)
+							.append($("<p/>")
+								.addClass("resumo")
+								.text(filme.resumo)
+							)
+							.append($("<div/>")
+
+								.addClass("genero")
+								.append($ulGenero)
+							)
+							.append($("<div/>")	
+								.addClass("destaque")
+								.append($("<p/>")
+									.addClass("texto")
+									.text("Gênero:")
+								)
+								.append($("<p/>")
+									.addClass("texto3")
+									.text("Elenco:")
+								)
+								.append($("<div/>")	
+									.addClass("texto2")
+									.text("Classificação:")
+								)
+							)
+							.append($("<p/>")
+								.addClass("classificacao")
+								.text(filme.classificacao)
+							)			
+						
+							.append($("<p/>")
+								.addClass("elenco")
+								.text(filme.elenco)
+							)	
+							
+							.append($("<div/>")
+								.addClass("texto4")
+								.text("Opiniões com nota(1 a 5):")
+							)
+							.append($("<div />")
+								.addClass("opinioes")
+								.append($ulopinioes)
+							)
+							
+							.append($("<div/>")
+							.append($("<div/>")
+									.addClass("texto5")
+									.text("Recomendações:")
+								)
+								.addClass("semelhante")
+								.append($semelhante)
+								
+							)
+							
+						);
+		
+				})
+				
+			});
+			
+			
+			
+		</script>
+	</head>
+	<body>
+		<div class="cabecalho">
+			<img class="logo" src="logo.png"/>
+			<button class="b1"><a href="./index.html">Página Inicial</a></button>
+			<button class="b2"><a href="#">Séries e Filmes</a></button>
+			<button class="b3"><a href="#">Minha conta</a></button>
+			<button class="b4"><a href="#">Sobre Nós</a></button>
+			
+		</div>
+		<div class="catalogo">
+			<div class="filmes">				
+			</div>
+		</div>	
+	</body>
+
+</html>
